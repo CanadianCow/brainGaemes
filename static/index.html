@@ -8,46 +8,146 @@
   <link href="https://fonts.googleapis.com/css?family=Black+Ops+One|Eczar" rel="stylesheet">
   <title>Brain Gaemes!</title>
 
-  <style>
-
-  </style>
 </head>
 
 <body>
-
   <div class="app-wrapper">
-
+    
   </div>
-  <!--Login screen-->
-  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
-  <div id="id01" class="modal">
-          <form class="modal-content animate" action="/action_page.php">
-              <div class="imgcontainer">
-                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-                <!--<img src="img_icon.png" alt="Avatar" class="avatar">--> 
-              </div>
-          
-              <div class="container">
-                <label for="uname"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="uname" required>
-          
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
-                  
-                <button type="submit">Login</button>
-                <label>
-                  <input type="checkbox" checked="checked" name="remember"> Remember me
-                </label>
-              </div>
-          
-              <div class="container" style="background-color:#f1f1f1">
-                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                <span class="psw">Forgot <a href="#">password?</a></span>
-              </div>
-            </form>
+  <div class="rngbutton">   
+      <button onclick="randomPicker()">Click it</button>
+      <p id="random">...</p>
+      <p id="yourXP">...</p>
+      <p id="yourGOLD">...</p>
   </div>
   
-  <div class="box_header"></div>
+  <div class="equipment">
+    <h3>Items you have Equipped:</h3>
+    <li id="yourhelmet">...</li>
+    <li id="yourchestplate">...</li>
+    <li id="yourleggings">...</li>
+    <li id="yourboots">...</li>
+    <li id="yourweapon">...</li>
+  </div>
+  
+
+
+  <script>
+
+      var currentxp = 0;
+      var currentgold = 0;
+  
+    function randomPicker() {
+      /*
+      common -----light grey
+      uncommon ---green
+      rare -------blue
+      epic -------purple
+      legendary --red
+      exotic -----gold
+      */
+
+      //Gets what is in the id tags and replaces them with the new phrases
+      var x = document.getElementById("random")
+      var yourxp = document.getElementById("yourXP")
+      var yourgold = document.getElementById("yourGOLD")
+      var helmet = document.getElementById("yourhelmet")
+      var chestplate = document.getElementById("yourchestplate")
+      var leggings = document.getElementById("yourleggings")
+      var boots = document.getElementById("yourboots")
+      var weapon = document.getElementById("yourweapon")
+      
+      //Gets random variables
+      x.innerHTML = Math.floor((Math.random() * 150) + 1); //The floor() method rounds down
+      var rngNum = Math.floor((Math.random() * 10) + 1);
+      var rngNum2 = Math.floor((Math.random() * 15) + 10);
+      var rngNum3 = Math.floor((Math.random() * 5) + 1);
+      var rngNum4 = Math.floor((Math.random() * 4) + 1);
+      
+      //The chances of what you will get determinded from the random variables
+      if (x.innerHTML > 140) { //Getting gear
+        var rngNum = Math.floor((Math.random() * 99) + 1);
+
+        if (rngNum > 80) //Helmet
+        {
+            var rngNum = Math.floor((Math.random() * 99) + 1);
+            
+            //Chances80
+            if (rngNum > 99) {
+                var rngNum = Math.floor((Math.random() * 99) + 1);
+
+                if (rngNum > 99) {
+                    x.innerHTML = "Congratulations!!! You got a Exotic Elder Dragon Helmet!!!";
+                    helmet.innerHTML = "Exotic Elder Dragon Helmet.";
+                }
+
+                else if (rngNum > 80 && rngNum < 99) {
+                    x.innerHTML = "Congrats! You got a Legendary Hero Helmet!";
+                    helmet.innerHTML = "Legendary Hero Helmet.";
+                }
+
+                else
+                {
+                x.innerHTML = "You got a Legendary Dragon Helmet!!";
+                helmet.innerHTML = "Legendary Dragon Helmet.";
+                }
+            }
+          
+        }
+
+        //Chestplate
+        else if (rngNum > 60 && rngNum < 81){
+        x.innerHTML = "You got a RARE orc chestplate!";
+        helmet.innerHTML = "Rare orc helmet.";
+        }
+
+        //Leggings
+        else if (rngNum > 40 && rngNum < 61){
+        x.innerHTML = "You got a RARE orc leggings!";
+        helmet.innerHTML = "Rare orc helmet.";
+        }
+
+        //Boots
+        else if (rngNum > 20 && rngNum < 41){
+        x.innerHTML = "You got a RARE orc boots!";
+        helmet.innerHTML = "Rare orc helmet.";
+        }
+
+        //Weapon
+        else {
+        x.innerHTML = "You got a RARE orc weapon!";
+        helmet.innerHTML = "Rare orc helmet.";
+        }
+        
+      }
+
+      else if (x.innerHTML > 80 && x.innerHTML < 141){
+          x.innerHTML = "Nothing happend.";  
+      }
+  
+      else if (x.innerHTML > 40 && x.innerHTML < 80){
+          x.innerHTML = "You gained " + rngNum + " xp.";
+          currentxp += rngNum;
+      }
+  
+      else if (x.innerHTML > 30 && x.innerHTML < 40) {
+          x.innerHTML = "You gained " + rngNum2 + " xp.";
+          currentxp += rngNum;
+      }
+  
+      else {
+          x.innerHTML = "You gain " + rngNum3 + " gold!";
+          currentgold += rngNum3;
+      }
+  
+      yourxp.innerHTML = "You have: " + currentxp + " xp.";
+      yourgold.innerHTML = "You have: " + currentgold + " gold.";
+  
+  }
+  
+  
+  </script>
+
 </body>
 
 </html>
